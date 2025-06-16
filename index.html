@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MSP2 LoveIt</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #0f172a;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .panel {
+      background: linear-gradient(145deg, rgba(30, 41, 59, 0.9), rgba(60, 80, 100, 0.9));
+      padding: 15px;
+      border-radius: 20px;
+      width: 350px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      animation: growPanel 1s ease-out forwards;
+      margin-bottom: 30px;
+      zoom: 0.83;
+      position: relative;
+      top: -35px;
+    }
+
+    @keyframes growPanel {
+      0% {
+        opacity: 0;
+        transform: scale(0);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .panel h2 {
+      margin-top: 0;
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      background: linear-gradient(45deg, #34d399, #a855f7, #93c5fd);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+      margin-bottom: 15px;
+    }
+
+    .made-by {
+      font-size: 12px;
+      text-align: center;
+      color: white;
+      margin-top: 5px;
+      background: linear-gradient(45deg, #ffffff, #ffffff, #ffffff);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    input, select, button {
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+      font-size: 16px;
+    }
+
+    input, select {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+
+    select {
+      background: rgba(255, 255, 255, 0.3);
+      color: white;
+    }
+
+    select option {
+      background-color: rgba(255, 255, 255, 0.9);
+      color: black;
+    }
+
+    button {
+      cursor: pointer;
+      color: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-green {
+      background: linear-gradient(45deg, #34d399, #16a34a);
+    }
+    .btn-blue {
+      background: linear-gradient(45deg, #1d4ed8, #3b82f6);
+    }
+    .btn-red {
+      background: linear-gradient(45deg, #dc2626, #f87171);
+    }
+    .btn-gray {
+      background: linear-gradient(45deg, #334155, #475569);
+    }
+    .btn-yellow {
+      background: linear-gradient(45deg, #facc15, #fbbf24);
+      color: black;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    button:active {
+      transform: scale(1.02);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .status {
+      margin-top: 10px;
+      text-align: center;
+      min-height: 20px;
+      font-size: 14px;
+      word-wrap: break-word;
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 14px;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 10px;
+      border-radius: 10px;
+      width: 80%;
+      text-align: center;
+    }
+
+    .warning {
+      color: #facc15;
+      font-weight: bold;
+    }
+
+    .warning-title {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .warning-title::before {
+      content: "⚠️ ";
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="panel">
+    <h2>MSP2 LoveIt</h2>
+    <div class="made-by">
+      Made by: msp test 01 | palace • 
+      <a href="https://files.fm/f/7vn8hmfvcf" target="_blank" style="color: #93c5fd; text-decoration: none; font-weight: bold;">
+        Tutorial
+      </a>
+    </div>
+
+    <label for="manualIdInput">Manual ID</label>
+    <input type="text" id="manualIdInput" placeholder="Enter ID...">
+    <button class="btn-green" id="addManualIdButton">➕ Add ID</button>
+
+    <label for="selectCount">LoveIt Count</label>
+    <select id="selectCount">
+      <option value="10">10</option>
+      <option value="25">25</option>
+      <option value="45">45</option>
+      <option value="75">75</option>
+      <option value="100">100</option>
+      <option value="150">150</option>
+      <option value="275">275</option>
+      <option value="450">450</option>
+    </select>
+
+    <label for="speedSelect">Speed time</label>
+    <select id="speedSelect">
+      <option value="1">1 (1 second)</option>
+      <option value="2">2 (0.9 seconds)</option>
+      <option value="3">3 (0.8 seconds)</option>
+      <option value="4">4 (0.7 seconds)</option>
+      <option value="5">5 (0.6 seconds)</option>
+      <option value="6">6 (0.5 seconds)</option>
+      <option value="7">7 (0.4 seconds)</option>
+      <option value="8">8 (0.3 seconds)</option>
+      <option value="9">9 (0.2 seconds)</option>
+      <option value="10">10 (0.1 seconds)</option>
+    </select>
+
+    <button class="btn-blue" id="startButton">Start</button>
+    <button class="btn-red" id="deleteLoveitButton">Delete LoveIt</button>
+    <button class="btn-red" id="clearSavedIdsButton">Clear ID</button>
+    <button class="btn-gray" id="toggleViewsButton">Views: OFF</button>
+
+    <div class="status" id="statusText"></div>
+    <div class="status" id="counterText"></div>
+    <div class="status" id="savedIdsText">Saved IDs: 0</div>
+  </div>
+
+  <div class="footer">
+    <div class="warning-title">Warning!</div>
+    <span class="warning">This tool is extremely sensitive and if detected by msp, your account can be permanently banned.</span>
+  </div>
+
+  <script>
+    // Panel functionality, matching earlier behavior but integrated into this HTML template
+    let isRunning = false;
+    let isViewsEnabled = false;
+    let savedIds = [];
+
+    const $ = id => document.getElementById(id);
+    const manualIdInput = $('manualIdInput');
+    const addManualIdButton = $('addManualIdButton');
+    const selectCount = $('selectCount');
+    const speedSelect = $('speedSelect');
+    const startButton = $('startButton');
+    const deleteLoveitButton = $('deleteLoveitButton');
+    const clearSavedIdsButton = $('clearSavedIdsButton');
+    const toggleViewsButton = $('toggleViewsButton');
+    const statusText = $('statusText');
+    const counterText = $('counterText');
+    const savedIdsText = $('savedIdsText');
+
+    function setStatus(message, color = 'white') {
+      statusText.textContent = message;
+      statusText.style.color = color;
+      clearTimeout(setStatus.timeout);
+    }
+
+    function parseJWT(token) {
+      try {
+        return JSON.parse(atob(token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/')));
+      } catch {
+        return null;
+      }
+    }
+
+    async function getAllTokens() {
+      // Aynı API endpoint kullanılıyor; gerektiğinde güncelle
+      const res = await fetch('https://grateful-understood-mandolin.glitch.me/tokens');
+      const data = await res.json();
+      return data.tokens.map(t => t.token);
+    }
+
+    async function sendLoveit(id, jwt) {
+      const payload = parseJWT(jwt);
+      if (!payload?.profileId) throw new Error('Invalid token');
+      const headers = {
+        Authorization: `Bearer ${jwt}`,
+        'Content-Type': 'application/json'
+      };
+      const loveit = fetch(
+        `https://eu.mspapis.com/profilereactions/v1/profiles/${payload.profileId}/reactions/sources/profilegeneratedcontent/entities/${id}`,
+        { method: 'POST', headers, body: JSON.stringify({ reactionTypeId: 'loveit', entityGameId: 'j68d' }) }
+      );
+      const views = isViewsEnabled
+        ? fetch(
+            `https://eu.mspapis.com/profileviews/v1/profiles/${payload.profileId}/profilegeneratedcontent/${id}/views`,
+            { method: 'POST', headers }
+          )
+        : Promise.resolve();
+      const [loveRes] = await Promise.all([loveit, views]);
+      if (!loveRes.ok) throw new Error('LoveIt failed');
+    }
+
+    async function deleteLoveit(id, jwt) {
+      const payload = parseJWT(jwt);
+      if (!payload?.profileId) throw new Error('Invalid token');
+      const headers = {
+        Authorization: `Bearer ${jwt}`,
+        'Content-Type': 'application/json'
+      };
+      const res = await fetch(
+        `https://eu.mspapis.com/profilereactions/v1/profiles/${payload.profileId}/reactions/sources/profilegeneratedcontent/entities/${id}`,
+        { method: 'DELETE', headers }
+      );
+      if (!res.ok) throw new Error('Delete LoveIt failed');
+    }
+
+    async function parallelLimit(items, limit, fn, delay = 0) {
+      const pool = [];
+      for (const item of items) {
+        const p = fn(item).finally(() => pool.splice(pool.indexOf(p), 1));
+        pool.push(p);
+        if (pool.length >= limit) await Promise.race(pool);
+        if (delay) await new Promise(r => setTimeout(r, delay));
+      }
+      await Promise.all(pool);
+    }
+
+    // Add ID manually
+    addManualIdButton.addEventListener('click', () => {
+      const id = manualIdInput.value.trim();
+      if (id && !savedIds.includes(id)) {
+        savedIds.push(id);
+        savedIdsText.textContent = `Saved IDs: ${savedIds.length}`;
+        setStatus('✅ ID added!', 'green');
+        manualIdInput.value = '';
+      } else {
+        setStatus('⚠️ Enter valid ID or already added!', 'orange');
+      }
+    });
+
+    // Clear saved IDs
+    clearSavedIdsButton.addEventListener('click', () => {
+      savedIds = [];
+      savedIdsText.textContent = 'Saved IDs: 0';
+      setStatus('✅ Saved IDs Cleared!', 'green');
+    });
+
+    // Toggle Views feature
+    toggleViewsButton.addEventListener('click', () => {
+      isViewsEnabled = !isViewsEnabled;
+      if (isViewsEnabled) {
+        toggleViewsButton.textContent = 'Views: ON';
+        toggleViewsButton.classList.remove('btn-gray');
+        toggleViewsButton.classList.add('btn-yellow');
+      } else {
+        toggleViewsButton.textContent = 'Views: OFF';
+        toggleViewsButton.classList.remove('btn-yellow');
+        toggleViewsButton.classList.add('btn-gray');
+      }
+    });
+
+    // Delete LoveIt for saved IDs
+    deleteLoveitButton.addEventListener('click', async () => {
+      const count = parseInt(selectCount.value, 10);
+      if (!count || count <= 0) return setStatus('⚠️ Select a valid count!', 'orange');
+      if (savedIds.length === 0) return setStatus('⚠️ No IDs to delete!', 'orange');
+
+      setStatus('⏳ Deleting...', 'blue');
+      let succ = 0, fail = 0;
+      try {
+        const tokens = (await getAllTokens()).slice(0, count);
+        await parallelLimit(tokens, 20, async jwt => {
+          for (const id of savedIds) {
+            try {
+              await deleteLoveit(id, jwt);
+              succ++;
+            } catch {
+              fail++;
+            }
+            counterText.textContent = `✅ ${succ} | ❌ ${fail}`;
+          }
+        });
+        setStatus(`✅ Deleted: ${succ} | ❌ Failed: ${fail}`, 'green');
+      } catch (e) {
+        setStatus(`❌ ${e.message}`, 'red');
+      }
+    });
+
+    // Start sending LoveIt
+    startButton.addEventListener('click', async () => {
+      if (isRunning) {
+        isRunning = false;
+        startButton.textContent = 'Start';
+        setStatus('⏹️ Stopped', 'orange');
+        return;
+      }
+
+      const count = parseInt(selectCount.value, 10);
+      const speedValue = parseInt(speedSelect.value, 10);
+      const delay = Math.max(1100 - speedValue * 100, 50);
+      if (!count || count <= 0) return setStatus('⚠️ Select valid count!', 'orange');
+      if (savedIds.length === 0) return setStatus('⚠️ No IDs!', 'orange');
+
+      isRunning = true;
+      startButton.textContent = 'Stop';
+      setStatus('⏳ Sending...', 'blue');
+
+      let succ = 0, fail = 0;
+      try {
+        const tokens = (await getAllTokens()).slice(0, count);
+        await parallelLimit(tokens, 20, async jwt => {
+          if (!isRunning) throw new Error('Stopped');
+          for (const id of savedIds) {
+            if (!isRunning) throw new Error('Stopped');
+            try {
+              await sendLoveit(id, jwt);
+              succ++;
+            } catch {
+              fail++;
+            }
+            counterText.textContent = `✅ ${succ} | ❌ ${fail}`;
+          }
+        }, delay);
+        setStatus(`✅ Sent: ${succ} | ❌ ${fail}`, 'green');
+      } catch (e) {
+        setStatus(`❌ ${e.message}`, 'red');
+      } finally {
+        isRunning = false;
+        startButton.textContent = 'Start';
+      }
+    });
+  </script>
+
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="853b9e56-6067-4e05-bf6c-87ebaec9dd97"></script>
+</body>
+</html>
